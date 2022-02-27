@@ -40,3 +40,4 @@ class Query(PokemonQuery, PokemonQuery2):
 schema = Schema(
     query=Query, mutation=None, types=[PokemonSQL]
 )
+introspection_dict = schema.introspect()

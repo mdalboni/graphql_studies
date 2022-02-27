@@ -1,8 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask_graphql import GraphQLView
 
 from models import db_session
-from graphql_query import schema
+from graphql_query import schema, introspection_dict
 
 app = Flask(__name__)
 
@@ -14,6 +14,11 @@ app.add_url_rule(
         graphiql=True  # for having the GraphiQL interface
     )
 )
+
+
+@app.route('/graphql/export', methods=['GET'])
+def export_graphql_json():
+    return jsonify(introspection_dict), 200
 
 
 @app.teardown_appcontext
