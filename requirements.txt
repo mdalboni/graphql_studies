@@ -1,0 +1,7 @@
+requests
+graphene
+SQLAlchemy
+graphene_sqlalchemy
+Flask
+Flask-GraphQL
+gunicorn
