@@ -15,6 +15,16 @@ app.add_url_rule(
     )
 )
 
+# Optional, for adding batch query support (used in Apollo-Client)
+app.add_url_rule(
+    '/graphql/batch',
+    view_func=GraphQLView.as_view(
+        'graphql',
+        schema=schema,
+        batch=True
+    )
+)
+
 
 @app.route('/graphql/export', methods=['GET'])
 def export_graphql_json():

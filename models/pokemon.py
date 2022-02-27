@@ -1,5 +1,5 @@
 from graphene import String as StringQL, InputObjectType, ID
-from graphene.relay import Node
+# from graphene.relay import Node
 from graphene_sqlalchemy import SQLAlchemyObjectType
 from sqlalchemy import Column, Integer, String
 
@@ -9,7 +9,7 @@ from models import Model
 class Pokemon(Model):
     __tablename__ = 'pokemon'
     id = Column('id', Integer, primary_key=True)
-    name = Column(String(200))
+    name = Column(String(200), nullable=False)
 
     def __init__(self, name, id=None, *args, **kwargs):
         self.name = name

@@ -38,3 +38,8 @@ def get_and_save_pokemon_data(id):
     )
     session.add(PokemonData(**data))
     session.commit()
+
+
+if __name__ == "__main__":
+    get_and_save_pokemon()
+    session.close()
