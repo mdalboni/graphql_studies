@@ -1,15 +1,22 @@
-from graphene import String as StringQL, InputObjectType, ID
-# from graphene.relay import Node
+from graphene import InputObjectType
+from graphene import String as StringQL, ID
 from graphene_sqlalchemy import SQLAlchemyObjectType
 from sqlalchemy import Column, Integer, String
+from sqlalchemy.orm import relationship, backref
 
+from models.custom_node import CustomNode
 from models import Model
+from models.pokemon_data import PokemonData
 
 
 class Pokemon(Model):
     __tablename__ = 'pokemon'
     id = Column('id', Integer, primary_key=True)
     name = Column(String(200), nullable=False)
+    data = relationship(
+        PokemonData,
+        backref=backref('pokemon', cascade='delete,all')
+    )
 
     def __init__(self, name, id=None, *args, **kwargs):
         self.name = name
@@ -28,7 +35,7 @@ class Pokemon(Model):
 class PokemonSQL(SQLAlchemyObjectType):
     class Meta:
         model = Pokemon
-        # interfaces = (Node,)
+        interfaces = (CustomNode,)
 
 
 class PokemonFields:

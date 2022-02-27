@@ -1,8 +1,9 @@
 from flask import Flask, jsonify
 from flask_graphql import GraphQLView
+from werkzeug.utils import redirect
 
 from models import db_session
-from graphql_query import schema, introspection_dict
+from graphql_query import schema  # , introspection_dict
 
 app = Flask(__name__)
 
@@ -16,9 +17,9 @@ app.add_url_rule(
 )
 
 
-@app.route('/graphql/export', methods=['GET'])
+@app.route('/', methods=['GET'])
 def export_graphql_json():
-    return jsonify(introspection_dict), 200
+    return redirect('/graphql')
 
 
 @app.teardown_appcontext

@@ -1,3 +1,5 @@
+from graphene import String as StringQL, Int, ID
+from graphene_sqlalchemy import SQLAlchemyObjectType
 from sqlalchemy import Column, Integer, Boolean, ForeignKey, String
 
 from models import Model
@@ -41,3 +43,20 @@ class PokemonData(Model):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+
+class PokemonDataSQL(SQLAlchemyObjectType):
+    class Meta:
+        model = PokemonData
+        # interfaces = (Node,)
+
+
+class PokemonDataFields:
+    name = StringQL()
+    id = ID(source='pk')
+    pokemon_id = ID(source='fk')
+    height = Int()
+    is_default = Boolean()
+    order = Int()
+    weight = Int()
+    sprite = StringQL()
