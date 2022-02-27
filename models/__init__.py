@@ -20,7 +20,6 @@ def init_db():
 Model = declarative_base(name='Model')
 Model.query = db_session.query_property()
 
-from .pokemon import Pokemon
-from .pokemon_data import PokemonData
+from .tables import Pokemon, PokemonData
 
 Model.metadata.create_all(engine)

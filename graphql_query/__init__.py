@@ -1,10 +1,8 @@
 from graphene import ObjectType, List, String, Schema, Field, Int
 from graphene.relay import Node
 from graphene_sqlalchemy import SQLAlchemyConnectionField
-
-from models import Pokemon, PokemonData
-from models.pokemon import PokemonSQL
-from models.pokemon_data import PokemonDataSQL
+from models.pokemon import PokemonSQL, Pokemon
+from models.pokemon_data import PokemonDataSQL, PokemonData
 
 
 class PokemonQuery(ObjectType):
