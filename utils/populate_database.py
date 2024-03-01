@@ -12,7 +12,7 @@ pokemon_not_found = 'https://pm1.narvii.com/6715/bc85ac4e3704c7cdd9e3d5e556d25a5
 
 
 def get_and_save_pokemon(limit=151):
-    response = get(POKEMON_URL.format(limit))
+    response = get(POKEMON_URL.format(limit), timeout=60)
     if response.status_code != 200:
         raise Exception
     pokemons = response.json()['results']
@@ -25,7 +25,7 @@ def get_and_save_pokemon(limit=151):
 
 
 def get_and_save_pokemon_data(id):
-    response = get(POKEMON_DATA_URL.format(id))
+    response = get(POKEMON_DATA_URL.format(id), timeout=60)
     if response.status_code != 200:
         raise Exception
     data = response.json()
