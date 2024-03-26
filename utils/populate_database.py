@@ -1,4 +1,4 @@
-from requests import get
+from security.safe_requests import get
 from sqlalchemy.orm import sessionmaker
 
 from models import engine, Pokemon, PokemonData
